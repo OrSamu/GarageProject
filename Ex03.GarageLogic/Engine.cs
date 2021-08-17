@@ -23,6 +23,17 @@ namespace Ex03.GarageLogic
             m_CurrentEnergy = 0;
         }
 
+        public float MaxEnergyCapacity
+        {
+            get { return r_MaxEnergyCapacity; }
+        }
+
+        public float CurrentEnergy
+        {
+            get { return m_CurrentEnergy; }
+            //set { m_CurrentEnergy = value; }
+        }
+
         public bool IsEngineEnergyFull()
         {
             bool result = m_CurrentEnergy == r_MaxEnergyCapacity;
@@ -31,5 +42,7 @@ namespace Ex03.GarageLogic
         }
 
         public abstract void FillEnergy(float i_EnergyToAdd);
+
+        public abstract override string ToString();
     }
 }

@@ -31,5 +31,13 @@ namespace Ex03.GarageLogic
             InitializeWheels(k_NumOfWheels, i_WheelsManufacturer, i_CurrentWheelAirPressure, k_MaxAirPressureForTire);
             InitializeEngine(Engine.eEngineType.Fuel, k_MaxEnergyBattery, k_MaxFuel, FuelEngine.eFuelType.Soler);
         }
+
+        //One function - I want is dangerous and max weight
+        //Second function - Put the dangerous and max weight in the properites
+        // try {use properites} and catch {^^} 
+        //string properties 
+        //ask from the user string with properits in 
+        // place 0 proprites 1
+        //place 1 ...
     }
 }

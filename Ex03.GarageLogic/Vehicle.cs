@@ -42,6 +42,21 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public void InflateWheelsToMax()
+        {
+            float missingAirPressure = 0;
+
+            foreach (Wheel wheel in m_Wheels)
+            {
+                missingAirPressure = wheel.MaxAirPressure - wheel.CurrentAirPressure;
+                if (missingAirPressure != 0)
+                {
+                    wheel.InflateWheel(missingAirPressure);
+                }
+            }
+
+        }
+
         protected void InitializeEngine(Engine.eEngineType i_EngineType, float i_MaxEnergy,float i_MaxFuel,FuelEngine.eFuelType i_FuelType)
         {
             if (i_EngineType == Engine.eEngineType.Electric)
@@ -54,6 +69,25 @@ namespace Ex03.GarageLogic
             }
         }
 
-
+        protected string GetVehicleData()
+        {
+            string vehicleData = string.Format(
+                @"License Number is: {0} Model Name is: {1} Energy Percentage Left is: {2}%
+{3}
+Wheels information: ",
+                r_LicenseNumber,
+                r_Model,
+                m_CurrentEnergyPercentage,
+                m_Engine.ToString());
+            foreach(Wheel wheel in m_Wheels)
+            {
+                vehicleData += string.Format(
+                    @"{0}
+",
+                    wheel.ToString());
+            }
+            
+            return vehicleData;
+        }
     }
 }
