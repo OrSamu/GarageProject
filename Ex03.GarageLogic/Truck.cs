@@ -32,12 +32,17 @@ namespace Ex03.GarageLogic
             InitializeEngine(Engine.eEngineType.Fuel, k_MaxEnergyBattery, k_MaxFuel, FuelEngine.eFuelType.Soler);
         }
 
-        //One function - I want is dangerous and max weight
-        //Second function - Put the dangerous and max weight in the properites
-        // try {use properites} and catch {^^} 
-        //string properties 
-        //ask from the user string with properits in 
-        // place 0 proprites 1
-        //place 1 ...
+        public override string ToString()
+        {
+            string isDangerousTruck = r_IsDangerous ? "are" : "aren't";
+            string truckData = string.Format(@"{0}
+There are {1} wheels, the truck's goods {2} dangerous and the load Capacity is {3}.",
+                GetVehicleData(),
+                (int)eNumberOfWheels.Truck,
+                isDangerousTruck,
+                r_MaxWeight);
+
+            return truckData;
+        }
     }
 }

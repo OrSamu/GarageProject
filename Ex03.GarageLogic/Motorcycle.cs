@@ -21,8 +21,8 @@ namespace Ex03.GarageLogic
         private const float k_MaxFuel = 6;
         private const float k_MaxEnergyBattery = 1.8f;
 
-        private readonly eLicenseType m_LicenseType;
-        private readonly int m_EngineCapacity;
+        private readonly eLicenseType r_LicenseType;
+        private readonly int r_EngineCapacity;
 
         public Motorcycle(string i_LicenseNumber,
                        string i_Model,
@@ -34,11 +34,22 @@ namespace Ex03.GarageLogic
                        int i_EngineCapacity)
                 : base(i_LicenseNumber, i_Model, i_CurrentEnergyPercentage)
             {
-                m_LicenseType = i_LicenseType;
-                m_EngineCapacity = i_EngineCapacity;
+                r_LicenseType = i_LicenseType;
+                r_EngineCapacity = i_EngineCapacity;
                 InitializeWheels(k_NumOfWheels, i_WheelsManufacturer, i_CurrentWheelAirPressure, k_MaxAirPressureForTire);
                 InitializeEngine(i_EngineType, k_MaxEnergyBattery, k_MaxFuel, FuelEngine.eFuelType.Octan98);
             }
 
+        public override string ToString()
+        {
+            string motorcycleData = string.Format(@"{0}
+There are {1} wheels, the license Type is {2} and the engine capacity is {3}.",
+                GetVehicleData(),
+                (int)eNumberOfWheels.Motorcycle,
+                r_LicenseType.ToString(),
+                r_EngineCapacity);
+
+            return motorcycleData;
+        }
     }
 }

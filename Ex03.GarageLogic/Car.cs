@@ -29,8 +29,8 @@ namespace Ex03.GarageLogic
         private const float k_MaxEnergyBattery = 3.2f;
 
 
-        private readonly eNumberOfDoors m_Doors;
-        private readonly eColor m_Color;
+        private readonly eNumberOfDoors r_Doors;
+        private readonly eColor r_Color;
 
         public Car(string i_LicenseNumber,
                    string i_Model, 
@@ -42,11 +42,22 @@ namespace Ex03.GarageLogic
                    eColor i_CarColor)
             : base(i_LicenseNumber, i_Model, i_CurrentEnergyPercentage)
         {
-            m_Doors = i_DoorsNum;
-            m_Color = i_CarColor;
+            r_Doors = i_DoorsNum;
+            r_Color = i_CarColor;
             InitializeWheels(k_NumOfWheels, i_WheelsManufacturer, i_CurrentWheelAirPressure, k_MaxAirPressureForTire);
             InitializeEngine(i_EngineType, k_MaxEnergyBattery, k_MaxFuel, FuelEngine.eFuelType.Octan95);
         }
 
+        public override string ToString()
+        {
+            string carData = string.Format(
+                @"{0}
+There are {1} wheels, the car has '{2}' doors and the color is '{3}'.",
+                GetVehicleData(),
+                (int)eNumberOfWheels.Car,
+                r_Doors.ToString(),
+                r_Color.ToString());
+            return carData;
+        }
     }
 }
