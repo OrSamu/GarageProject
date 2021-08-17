@@ -31,7 +31,7 @@ namespace Ex03.GarageLogic
         public float CurrentEnergy
         {
             get { return m_CurrentEnergy; }
-            //set { m_CurrentEnergy = value; }
+            set { m_CurrentEnergy = value; }
         }
 
         public bool IsEngineEnergyFull()

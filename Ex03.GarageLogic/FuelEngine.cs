@@ -47,8 +47,8 @@ namespace Ex03.GarageLogic
         {
             string engineData = string.Format(@"Fuel type is {0}, current amount of fuel is {1} liters and the max fuel capacity is {2} liters.",
                 m_FuelType.ToString(),
-                MaxEnergyCapacity,
-                CurrentEnergy
+                CurrentEnergy,
+            MaxEnergyCapacity
             );
 
             return engineData;
