@@ -11,9 +11,9 @@ namespace Ex03.GarageLogic
         public enum eLicenseType
         {
             A = 1,
-            AA = 2,
+            Aa = 2,
             B1 = 3,
-            BB = 4
+            Bb = 4
         }
 
         private const int k_NumOfWheels = 2;
@@ -21,8 +21,8 @@ namespace Ex03.GarageLogic
         private const float k_MaxFuel = 6;
         private const float k_MaxEnergyBattery = 1.8f;
 
-        private readonly eLicenseType r_LicenseType;
-        private readonly int r_EngineCapacity;
+        private  eLicenseType m_LicenseType;
+        private int m_EngineCapacity;
 
         public Motorcycle(string i_LicenseNumber,
                        string i_Model,
@@ -34,8 +34,8 @@ namespace Ex03.GarageLogic
                        int i_EngineCapacity)
                 : base(i_LicenseNumber, i_Model, i_CurrentEnergyPercentage)
             {
-                r_LicenseType = i_LicenseType;
-                r_EngineCapacity = i_EngineCapacity;
+                m_LicenseType = i_LicenseType;
+                m_EngineCapacity = i_EngineCapacity;
                 InitializeWheels(k_NumOfWheels, i_WheelsManufacturer, i_CurrentWheelAirPressure, k_MaxAirPressureForTire);
                 InitializeEngine(i_EngineType, k_MaxEnergyBattery, k_MaxFuel, FuelEngine.eFuelType.Octan98);
             }
@@ -46,8 +46,8 @@ namespace Ex03.GarageLogic
 There are {1} wheels, the license Type is {2} and the engine capacity is {3}.",
                 GetVehicleData(),
                 (int)eNumberOfWheels.Motorcycle,
-                r_LicenseType.ToString(),
-                r_EngineCapacity);
+                m_LicenseType.ToString(),
+                m_EngineCapacity);
 
             return motorcycleData;
         }
