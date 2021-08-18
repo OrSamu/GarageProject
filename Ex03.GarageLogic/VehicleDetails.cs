@@ -21,10 +21,6 @@ namespace Ex03.GarageLogic
             r_Owner_Name = i_Owner_Name;
             r_Owner_Number = i_Owner_Number;
         }
-        public void SetVehicleStatus(eVehicleStates status)
-        {
-            
-        }
         public int State
         {
             get { return (int)m_State; }
