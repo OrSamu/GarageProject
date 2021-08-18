@@ -35,7 +35,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            string engineData = string.Format(@"Current amount of energy is {0} hours and the max energy capacity is {1} hours",
+            string engineData = string.Format(@"Current amount of energy is {0} hours and the max energy capacity is {1} hours.",
                 CurrentEnergy,
                 MaxEnergyCapacity);
 
