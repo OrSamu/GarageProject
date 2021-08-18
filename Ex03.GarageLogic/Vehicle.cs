@@ -178,7 +178,7 @@ namespace Ex03.GarageLogic
 
             if(isValidEnumm)
             {
-                throw new ValueOutOfRangeException(Enum.GetValues(typeof(T)).Length, 1);
+                //throw new ValueOutOfRangeException(Enum.GetValues(typeof(T)).Length, 1);
             }
 
             return isValidEnumm;
