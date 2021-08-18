@@ -16,10 +16,9 @@ namespace Ex03.GarageLogic
 
         public enum eQualificationsIndex
         {
-            ModelName = 0,
-            CurrentEnergyAmount = 1,
-            WheelManufacturerName = 2,
-            CurrentWheelAirPressure = 3
+            WheelManufacturerName = 1,
+            CurrentWheelAirPressure = 2,
+            NumOfBaseQualifications = 3
         }
 
         protected readonly string r_LicenseNumber;
@@ -30,12 +29,23 @@ namespace Ex03.GarageLogic
 
         protected Vehicle(
             string i_LicenseNumber,
-            string i_ModelName,
+            string i_Model,
             float i_CurrentEnergyPercentage,
+            float i_MaxEnergy,
             Engine.eEngineType i_EngineType)
         {
             r_LicenseNumber = i_LicenseNumber;
-            m_Model = i_ModelName;
+            m_Model = i_Model;
+
+            if(i_EngineType == Engine.eEngineType.Electric)
+            {
+                m_Engine = new ElectricEngine(i_MaxEnergy);
+            }
+            else
+            {
+                m_Engine = new FuelEngine(i_MaxEnergy);
+            }
+
             m_CurrentEnergyPercentage = i_CurrentEnergyPercentage;
         }
 
@@ -74,7 +84,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                m_Engine = new FuelEngine(i_MaxFuel, i_FuelType);
+                m_Engine = new FuelEngine(i_MaxFuel);
             }
         }
 
@@ -82,11 +92,8 @@ namespace Ex03.GarageLogic
         {
             List<string> neededQualifications = new List<string>
                                                      {
-                                                         "Model name: ",
-                                                         "Current fuel/energy amount: ",
                                                          "Wheel manufacturer: ",
                                                          "Current wheel air pressure: "
-                                                         //Engine type ?
                                                      };
 
             return neededQualifications;
@@ -99,15 +106,11 @@ namespace Ex03.GarageLogic
 
             switch(i_IndexOfString)
             {
-                case (int)eQualificationsIndex.ModelName:
                 case (int)eQualificationsIndex.WheelManufacturerName:
                     isQualificationValid = checkStringNotEmpty(i_NeededQualificationToCheck);
                     break;
-                case (int)eQualificationsIndex.CurrentEnergyAmount:
-                    isQualificationValid = checkCurrentEnergy(i_NeededQualificationToCheck);
-                    break;
                 case (int)eQualificationsIndex.CurrentWheelAirPressure:
-                    isQualificationValid = checkCurrentWheelAirPressures(i_NeededQualificationToCheck);
+                    isQualificationValid = CheckCurrentWheelAirPressures(i_NeededQualificationToCheck,9999);
                     break;
             }
 
@@ -124,7 +127,7 @@ namespace Ex03.GarageLogic
             return true;
         }
 
-        private bool checkCurrentWheelAirPressures(string i_StringToCheck)
+        protected bool CheckCurrentWheelAirPressures(string i_StringToCheck,float i_MaxAirPressure)
         {
             float stringToFloat;
             bool isValidToParse = float.TryParse(i_StringToCheck, out stringToFloat);
@@ -134,13 +137,10 @@ namespace Ex03.GarageLogic
                 throw new FormatException("Failed parse to float");
             }
 
-            float maxAirPressure = this.m_Wheels[0].MaxAirPressure;
-
-            if (stringToFloat > maxAirPressure || stringToFloat < 0)
+            if (stringToFloat > i_MaxAirPressure || stringToFloat < 0)
             {
-                //throw new ValueOutOfRangeException((float)maxAirPressure, 0);
+                throw new ValueOutOfRangeException(i_MaxAirPressure, 0);
             }
-
             return true;
         }
 
@@ -158,7 +158,7 @@ namespace Ex03.GarageLogic
 
             if (stringToFloat > maxEnergy || stringToFloat < 0)
             {
-                //throw new ValueOutOfRangeException((float)maxAirPressure, 0);
+                throw new ValueOutOfRangeException((float)maxEnergy, 0);
             }
 
             return true;
@@ -166,19 +166,21 @@ namespace Ex03.GarageLogic
 
         public virtual void SetNeededQualifications(List<string> i_NeededQualifications)
         {
-            m_Model = i_NeededQualifications[(int)eQualificationsIndex.ModelName];
-            m_Engine.CurrentEnergy = float.Parse(i_NeededQualifications[(int)eQualificationsIndex.CurrentEnergyAmount]);
+            //m_Model = i_NeededQualifications[(int)eQualificationsIndex.ModelName];
+            //m_Engine.CurrentEnergy = float.Parse(i_NeededQualifications[(int)eQualificationsIndex.CurrentEnergyAmount]);
             m_CurrentEnergyPercentage = m_Engine.CurrentEnergy / m_Engine.MaxEnergyCapacity * 100;
         }
 
         public bool CheckIfEnumDefined<T>(string i_EnumToCheck)
         {
+            //need to fix
+            bool isValidEnumm = true;
             int enumInInt = int.Parse(i_EnumToCheck);
-            bool isValidEnumm = !Enum.IsDefined(typeof(T), enumInInt);
+           // bool isValidEnumm = Enum.IsDefined(typeof(T), )(TenumInInt);
 
             if(isValidEnumm)
             {
-                //throw new ValueOutOfRangeException(Enum.GetValues(typeof(T)).Length, 1);
+                throw new ValueOutOfRangeException(Enum.GetValues(typeof(T)).Length, 1);
             }
 
             return isValidEnumm;

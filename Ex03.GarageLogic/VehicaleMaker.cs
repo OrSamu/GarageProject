@@ -16,26 +16,51 @@ namespace Ex03.GarageLogic
             Truck = 5
         }
 
-        public static Vehicle CreateVehicle(eVehicleTypes i_VehicleType)
+        public static Vehicle CreateVehicle(string i_LicenseNumber, string i_Model,float i_CurrentEnergy,int i_VehicleType)
         {
             Vehicle newVehicle = null;
 
             switch(i_VehicleType)
             {
-                case eVehicleTypes.FuelMotorcycle:
-                    //newVehicle=new Motorcycle()
+                case (int)eVehicleTypes.FuelMotorcycle:
+                    newVehicle = new Motorcycle(
+                        i_LicenseNumber,
+                        i_Model,
+                        Engine.eEngineType.Fuel,
+                        Motorcycle.k_MaxFuel,
+                        i_CurrentEnergy);
                     break;
-                case eVehicleTypes.ElectricMotorcycle:
-                    //newVehicle=new Motorcycle()
+                case (int)eVehicleTypes.ElectricMotorcycle:
+                    newVehicle = new Motorcycle(
+                        i_LicenseNumber,
+                        i_Model,
+                        Engine.eEngineType.Electric,
+                        Motorcycle.k_MaxEnergyBattery,
+                        i_CurrentEnergy);
                     break;
-                case eVehicleTypes.FuelCar:
-                    //newVehicle=new Car()
+                case (int)eVehicleTypes.FuelCar:
+                    newVehicle = new Car(
+                        i_LicenseNumber,
+                        i_Model,
+                        Engine.eEngineType.Fuel,
+                        Car.k_MaxFuel,
+                        i_CurrentEnergy);
                     break;
-                case eVehicleTypes.ElectricCar:
-                    //newVehicle=new Car()
+                case (int)eVehicleTypes.ElectricCar:
+                    newVehicle = new Car(
+                        i_LicenseNumber,
+                        i_Model,
+                        Engine.eEngineType.Electric,
+                        Car.k_MaxEnergyBattery,
+                        i_CurrentEnergy);
                     break;
-                case eVehicleTypes.Truck:
-                    //newVehicle=new Truck()
+                case (int)eVehicleTypes.Truck:
+                    newVehicle = new Truck(
+                        i_LicenseNumber,
+                        i_Model,
+                        Engine.eEngineType.Fuel,
+                        Truck.k_MaxFuel,
+                        i_CurrentEnergy);
                     break;
             }
 

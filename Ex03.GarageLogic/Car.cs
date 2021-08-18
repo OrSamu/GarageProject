@@ -25,36 +25,31 @@ namespace Ex03.GarageLogic
 
         private enum eQualificationsIndexForCar
         {
-            Color = 4,
-            Doors = 5
+            Color = 3,
+            Doors = 4
         }
 
         private const int k_NumOfWheels = 4;
         private const int k_MaxAirPressureForTire = 32;
-        private const float k_MaxFuel = 45;
-        private const float k_MaxEnergyBattery = 3.2f;
+        internal const float k_MaxFuel = 45;
+        internal const float k_MaxEnergyBattery = 3.2f;
 
 
         private eNumberOfDoors m_Doors;
         private eColor m_Color;
 
+        
         public Car(string i_LicenseNumber,
                    string i_Model, 
                    Engine.eEngineType i_EngineType, 
-                   float i_CurrentEnergyPercentage, 
-                   string i_WheelsManufacturer, 
-                   float i_CurrentWheelAirPressure,
-                   eNumberOfDoors i_DoorsNum,
-                   eColor i_CarColor)
-            : base(i_LicenseNumber, i_Model, i_CurrentEnergyPercentage)
+                   float i_MaxEnergy, 
+                   float i_CurrentEnergy)
+            : base(i_LicenseNumber,i_Model,i_CurrentEnergy, i_MaxEnergy, i_EngineType)
         {
-            m_Doors = i_DoorsNum;
-            m_Color = i_CarColor;
-            InitializeWheels(k_NumOfWheels, i_WheelsManufacturer, i_CurrentWheelAirPressure, k_MaxAirPressureForTire);
-            InitializeEngine(i_EngineType, k_MaxEnergyBattery, k_MaxFuel, FuelEngine.eFuelType.Octan95);
-        }
 
-        public new virtual List<string> GetNeededQualifications()
+        }
+        
+        public override List<string> GetNeededQualifications()
         {
             List<string> neededQualifications = base.GetNeededQualifications();
 
@@ -66,11 +61,11 @@ namespace Ex03.GarageLogic
             return neededQualifications;
         }
 
-        public new virtual bool CheckNeededQualifications(string i_NeededQualificationToCheck, int i_IndexOfString)
+        public override bool CheckNeededQualifications(string i_NeededQualificationToCheck, int i_IndexOfString)
         {
             bool isValidInput = false;
 
-            if (i_IndexOfString < 4)
+            if (i_IndexOfString < (int)Vehicle.eQualificationsIndex.NumOfBaseQualifications-1)
             {
                 isValidInput = base.CheckNeededQualifications(i_NeededQualificationToCheck, i_IndexOfString);
             }
@@ -78,6 +73,9 @@ namespace Ex03.GarageLogic
             {
                 switch (i_IndexOfString)
                 {
+                    case (int)Vehicle.eQualificationsIndex.CurrentWheelAirPressure:
+                        isValidInput = CheckCurrentWheelAirPressures(i_NeededQualificationToCheck,k_MaxAirPressureForTire);
+                        break;
                     case (int)eQualificationsIndexForCar.Doors:
                         isValidInput = CheckIfEnumDefined<eNumberOfDoors>(i_NeededQualificationToCheck);
                         break;
@@ -90,8 +88,9 @@ namespace Ex03.GarageLogic
             return isValidInput;
         }
         
-        public new virtual void SetNeededQualifications(List<string> i_NeededQualifications)
+        public override void SetNeededQualifications(List<string> i_NeededQualifications)
         {
+            FuelEngine fuelEngine = m_Engine as FuelEngine;
             string manufacturerName = i_NeededQualifications[(int)eQualificationsIndex.WheelManufacturerName];
             float currentAirPressure =
                 float.Parse(i_NeededQualifications[(int)eQualificationsIndex.CurrentWheelAirPressure]);
@@ -99,6 +98,11 @@ namespace Ex03.GarageLogic
                 (eNumberOfDoors)int.Parse(i_NeededQualifications[(int)eQualificationsIndexForCar.Doors]);
             eColor colorInput =
                 (eColor)int.Parse(i_NeededQualifications[(int)eQualificationsIndexForCar.Color]);
+
+            if (fuelEngine != null)
+            {
+                fuelEngine.FuelType = FuelEngine.eFuelType.Octan95;
+            }
 
             base.SetNeededQualifications(i_NeededQualifications);
             InitializeWheels(k_NumOfWheels, manufacturerName, currentAirPressure, k_MaxAirPressureForTire);

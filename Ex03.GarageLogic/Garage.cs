@@ -12,17 +12,13 @@ namespace Ex03.GarageLogic
         {
             r_ExistingVehicles = new Dictionary<string, VehicleDetails>();
         }
-        public bool AddVehicle(string i_LicenseNumber, string i_Owner_Name, string i_Owner_Number){
-            bool isThisVehicleExist = isVihicleExistInGarage(i_LicenseNumber);
-            if (isThisVehicleExist)
-            {
-                VehicleDetails vehicleDetails = new VehicleDetails(i_Owner_Name,i_Owner_Number);
+        public void AddVehicle(string i_LicenseNumber, string i_Owner_Name, string i_Owner_Number, Vehicle i_Vehicle){
+
+                VehicleDetails vehicleDetails = new VehicleDetails(i_Owner_Name,i_Owner_Number, i_Vehicle);
                 r_ExistingVehicles.Add(i_LicenseNumber, vehicleDetails);
-            }
-            return isThisVehicleExist;
 
         }
-        private bool isVihicleExistInGarage(string i_LicenseNumber)
+        public bool IsVihicleExistInGarage(string i_LicenseNumber)
         {
             bool isVehicleExist = false;
             foreach (string vehicleNumber in r_ExistingVehicles.Keys)
@@ -37,7 +33,7 @@ namespace Ex03.GarageLogic
 
         public void SetVehicleStatus(string i_LicenseNumber, int status)
         {
-            if (isVihicleExistInGarage(i_LicenseNumber))
+            if (IsVihicleExistInGarage(i_LicenseNumber))
             {
                 r_ExistingVehicles[i_LicenseNumber].State=status; 
             }

@@ -24,27 +24,22 @@ namespace Ex03.GarageLogic
 
         private const int k_NumOfWheels = 2;
         private const int k_MaxAirPressureForTire = 30;
-        private const float k_MaxFuel = 6;
-        private const float k_MaxEnergyBattery = 1.8f;
+        internal const float k_MaxFuel = 6;
+        internal const float k_MaxEnergyBattery = 1.8f;
 
         private eLicenseType m_LicenseType;
         private int m_EngineCapacity;
 
+       
         public Motorcycle(string i_LicenseNumber,
-                       string i_Model,
-                       Engine.eEngineType i_EngineType,
-                       float i_CurrentEnergyPercentage,
-                       string i_WheelsManufacturer,
-                       float i_CurrentWheelAirPressure,
-                       eLicenseType i_LicenseType,
-                       int i_EngineCapacity)
-                : base(i_LicenseNumber, i_Model, i_CurrentEnergyPercentage)
-            {
-                m_LicenseType = i_LicenseType;
-                m_EngineCapacity = i_EngineCapacity;
-                InitializeWheels(k_NumOfWheels, i_WheelsManufacturer, i_CurrentWheelAirPressure, k_MaxAirPressureForTire);
-                InitializeEngine(i_EngineType, k_MaxEnergyBattery, k_MaxFuel, FuelEngine.eFuelType.Octan98);
-            }
+                                    string i_Model,
+                                    Engine.eEngineType i_EngineType,
+                                    float i_MaxEnergy,
+                                    float i_CurrentEnergy)
+            : base(i_LicenseNumber,i_Model,i_CurrentEnergy, i_MaxEnergy, i_EngineType)
+        {
+        }
+        
 
         public new virtual List<string> GetNeededQualifications()
         {
@@ -93,7 +88,7 @@ namespace Ex03.GarageLogic
 
             if (stringToInt < 0)
             {
-                //throw new ValueOutOfRangeException(999999999, 0);
+                throw new ValueOutOfRangeException(999999999, 0);
             }
 
             return isValidToParse;
@@ -101,6 +96,7 @@ namespace Ex03.GarageLogic
 
         public new virtual void SetNeededQualifications(List<string> i_NeededQualifications)
         {
+            FuelEngine fuelEngine = m_Engine as FuelEngine;
             string manufacturerName = i_NeededQualifications[(int)eQualificationsIndex.WheelManufacturerName];
             float currentAirPressure =
                 float.Parse(i_NeededQualifications[(int)eQualificationsIndex.CurrentWheelAirPressure]);
@@ -108,6 +104,13 @@ namespace Ex03.GarageLogic
                 (eLicenseType)int.Parse(i_NeededQualifications[(int)eQualificationsIndexForMotorcycle.License]);
             int engineCapacityInput =
                 int.Parse(i_NeededQualifications[(int)eQualificationsIndexForMotorcycle.EngineCapacity]);
+            
+            if (fuelEngine != null)
+            {
+                fuelEngine.FuelType = FuelEngine.eFuelType.Octan98;
+            }
+
+            
 
             base.SetNeededQualifications(i_NeededQualifications);
             InitializeWheels(k_NumOfWheels, manufacturerName, currentAirPressure, k_MaxAirPressureForTire);

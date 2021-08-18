@@ -16,26 +16,19 @@ namespace Ex03.GarageLogic
         private const int k_NumOfWheels = 16;
         private const int k_MaxAirPressureForTire = 26;
         private const string k_Yes = "1";
-        private const float k_MaxFuel = 120;
-        private const float k_MaxEnergyBattery = -1f;
+        internal const float k_MaxFuel = 120;
 
         private bool m_IsDangerous;
         private float m_MaxWeight;
 
-        public Truck(string i_LicenseNumber,
-                     string i_Model,
-                     float i_CurrentEnergyPercentage,
-                     string i_WheelsManufacturer,
-                     float i_CurrentWheelAirPressure,
-                     bool i_IsDangerousTruck,
-                     float i_MaxWeightToDeliver
-                     )
-            : base(i_LicenseNumber, i_Model, i_CurrentEnergyPercentage)
+     
+        public Truck  (string i_LicenseNumber,
+                                string i_Model,
+                                Engine.eEngineType i_EngineType,
+                                float i_MaxEnergy,
+                                float i_CurrentEnergy)
+            : base(i_LicenseNumber, i_Model, i_CurrentEnergy, i_MaxEnergy, i_EngineType)
         {
-            m_IsDangerous = i_IsDangerousTruck;
-            m_MaxWeight = i_MaxWeightToDeliver;
-            InitializeWheels(k_NumOfWheels, i_WheelsManufacturer, i_CurrentWheelAirPressure, k_MaxAirPressureForTire);
-            InitializeEngine(Engine.eEngineType.Fuel, k_MaxEnergyBattery, k_MaxFuel, FuelEngine.eFuelType.Soler);
         }
 
         public new virtual List<string> GetNeededQualifications()
@@ -85,7 +78,7 @@ namespace Ex03.GarageLogic
 
             if(stringToInt != 1 && stringToInt != 2)
             {
-                //throw new ValueOutOfRangeException(2, 1);
+                throw new ValueOutOfRangeException(2, 1);
             }
 
             return isValidToParse;
@@ -103,7 +96,7 @@ namespace Ex03.GarageLogic
 
             if (stringToFloat<0)
             {
-                //throw new ValueOutOfRangeException(999999999, 0);
+                throw new ValueOutOfRangeException(999999999, 0);
             }
 
             return isValidToParse;
@@ -111,12 +104,14 @@ namespace Ex03.GarageLogic
 
         public new virtual void SetNeededQualifications(List<string> i_NeededQualifications)
         {
+            FuelEngine fuelEngine = m_Engine as FuelEngine;
             string manufacturerName = i_NeededQualifications[(int)eQualificationsIndex.WheelManufacturerName];
             float currentAirPressure =
                 float.Parse(i_NeededQualifications[(int)eQualificationsIndex.CurrentWheelAirPressure]);
 
             base.SetNeededQualifications(i_NeededQualifications);
             InitializeWheels(k_NumOfWheels, manufacturerName, currentAirPressure, k_MaxAirPressureForTire);
+            fuelEngine.FuelType = FuelEngine.eFuelType.Soler;
             m_IsDangerous = i_NeededQualifications[(int)eQualificationsIndexForTruck.DangerousTruck] == k_Yes;
             m_MaxWeight = float.Parse(i_NeededQualifications[(int)eQualificationsIndexForTruck.MaximumWeight]);
         }

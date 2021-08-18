@@ -16,18 +16,23 @@ namespace Ex03.GarageLogic
             Octan98 = 4
         }
 
-        private readonly eFuelType m_FuelType;
+        private eFuelType m_FuelType;
 
-        public FuelEngine(float i_MaxFuelCapacity, eFuelType i_FuelType) : base(i_MaxFuelCapacity)
+        public FuelEngine(float i_MaxFuelCapacity) : base(i_MaxFuelCapacity)
         {
-            m_FuelType = i_FuelType;
+        }
+
+        public eFuelType FuelType
+        {
+            get { return m_FuelType; }
+            set { m_FuelType = value; }
         }
 
         public override void FillEnergy(float i_EnergyToAdd)
         {
             if (i_EnergyToAdd < 0)
             {
-                //throw new ArgumentException("Negative number entered");
+                throw new ArgumentException("Negative number entered");
             }
 
             fillFuelTank(i_EnergyToAdd);
@@ -37,7 +42,7 @@ namespace Ex03.GarageLogic
         {
             if (m_CurrentEnergy + i_AmountOfFuelToAdd > r_MaxEnergyCapacity)
             {
-                //throw new ValueOutOfRangeException(r_MaxEnergyCapacity, 0);
+                throw new ValueOutOfRangeException(r_MaxEnergyCapacity, 0);
             }
 
             m_CurrentEnergy += i_AmountOfFuelToAdd;

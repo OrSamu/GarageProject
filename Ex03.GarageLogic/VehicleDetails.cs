@@ -16,10 +16,12 @@ namespace Ex03.GarageLogic
         private readonly string r_Owner_Name;
         private readonly string r_Owner_Number;
         private int m_State= (int)eVehicleStates.Repairing;
-        public VehicleDetails(string i_Owner_Name, string i_Owner_Number)
+        private Vehicle m_vehicle;
+        public VehicleDetails(string i_Owner_Name, string i_Owner_Number, Vehicle i_Vehicle)
         {
             r_Owner_Name = i_Owner_Name;
             r_Owner_Number = i_Owner_Number;
+            m_vehicle = i_Vehicle;
         }
         public int State
         {
