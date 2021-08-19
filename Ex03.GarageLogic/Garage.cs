@@ -81,6 +81,16 @@ namespace Ex03.GarageLogic
                 }
             return vehicalsToSend;
         }
+
+        public string GetVehicleData(string i_LicenseNumber)
+        {
+            VehicleDetails vehicleData;
+
+            vehicleData = r_ExistingVehicles[i_LicenseNumber];
+
+            return vehicleData.ToString();
+        }
     }
+
     
 }

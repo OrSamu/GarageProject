@@ -14,10 +14,12 @@ namespace Ex03.GarageUI
             return i_IsValidLicense.Length >= 1 && (i_IsValidLicense[0]!=' ');
         }
 
-        public static bool isAFloat(string userInput)
+        public static bool IsAFloat(string userInput)
         {
             float inputNumber;
             bool isInputFloat = float.TryParse(userInput, out inputNumber);
+
+            isInputFloat = isInputFloat && inputNumber > 0;
 
             return isInputFloat;
         }

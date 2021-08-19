@@ -23,15 +23,13 @@ namespace Ex03.GarageLogic
 
      
         public Truck  (string i_LicenseNumber,
-                                string i_Model,
-                                Engine.eEngineType i_EngineType,
-                                float i_MaxEnergy,
-                                float i_CurrentEnergy)
-            : base(i_LicenseNumber, i_Model, i_CurrentEnergy, i_MaxEnergy, i_EngineType)
+                       Engine.eEngineType i_EngineType,
+                       float i_MaxEnergy)
+            : base(i_LicenseNumber, i_MaxEnergy, i_EngineType)
         {
         }
 
-        public new virtual List<string> GetNeededQualifications()
+        public override List<string> GetNeededQualifications()
         {
             List<string> neededQualifications = base.GetNeededQualifications();
 
@@ -41,7 +39,7 @@ namespace Ex03.GarageLogic
             return neededQualifications;
         }
 
-        public new virtual bool CheckNeededQualifications(string i_NeededQualificationToCheck, int i_IndexOfString)
+        public override bool CheckNeededQualifications(string i_NeededQualificationToCheck, int i_IndexOfString)
         {
             bool isValidInput = false;
 
@@ -102,7 +100,7 @@ namespace Ex03.GarageLogic
             return isValidToParse;
         }
 
-        public new virtual void SetNeededQualifications(List<string> i_NeededQualifications)
+        public override void SetNeededQualifications(List<string> i_NeededQualifications)
         {
             FuelEngine fuelEngine = m_Engine as FuelEngine;
             string manufacturerName = i_NeededQualifications[(int)eQualificationsIndex.WheelManufacturerName];

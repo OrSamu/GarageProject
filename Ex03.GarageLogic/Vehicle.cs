@@ -16,9 +16,11 @@ namespace Ex03.GarageLogic
 
         public enum eQualificationsIndex
         {
-            WheelManufacturerName = 1,
-            CurrentWheelAirPressure = 2,
-            NumOfBaseQualifications = 3
+            ModelName = 0,
+            Energy = 1,
+            WheelManufacturerName = 2,
+            CurrentWheelAirPressure = 3,
+            NumOfBaseQualifications = 4
         }
 
         protected readonly string r_LicenseNumber;
@@ -30,13 +32,10 @@ namespace Ex03.GarageLogic
 
         protected Vehicle(
             string i_LicenseNumber,
-            string i_Model,
-            float i_CurrentEnergyPercentage,
             float i_MaxEnergy,
             Engine.eEngineType i_EngineType)
         {
             r_LicenseNumber = i_LicenseNumber;
-            m_Model = i_Model;
 
             if(i_EngineType == Engine.eEngineType.Electric)
             {
@@ -46,15 +45,11 @@ namespace Ex03.GarageLogic
             {
                 m_Engine = new FuelEngine(i_MaxEnergy);
             }
-
-            m_CurrentEnergyPercentage = i_CurrentEnergyPercentage;
         }
 
-        public Engine engine
+        public Engine Engine
         {
-            get {
-                return m_Engine;
-            }
+            get { return m_Engine; }
         }
         protected void InitializeWheels(int i_NumOfWheels, string i_ManufacturerName, float i_CurrentAirPressure, float i_MaxAirPressure)
         {
@@ -68,9 +63,10 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void InflateWheelsToMax()
+        public string InflateWheelsToMax()
         {
             float missingAirPressure = 0;
+            string inflationReturnMsg;
 
             foreach (Wheel wheel in m_Wheels)
             {
@@ -81,6 +77,16 @@ namespace Ex03.GarageLogic
                 }
             }
 
+            if(missingAirPressure != 0)
+            {
+                inflationReturnMsg = "Inflate operation succeeded";
+            }
+            else
+            {
+                inflationReturnMsg = "Wheels are already have the maximum air pressure";
+            }
+
+            return inflationReturnMsg;
         }
 
         protected void InitializeEngine(Engine.eEngineType i_EngineType, float i_MaxEnergy,float i_MaxFuel,FuelEngine.eFuelType i_FuelType)
@@ -99,6 +105,8 @@ namespace Ex03.GarageLogic
         {
             List<string> neededQualifications = new List<string>
                                                      {
+                                                         "Model name: ",
+                                                         "Vehicle's energy source amount ",
                                                          "Wheel manufacturer: ",
                                                          "Current wheel air pressure: "
                                                      };
@@ -113,11 +121,17 @@ namespace Ex03.GarageLogic
 
             switch(i_IndexOfString)
             {
+                case (int)eQualificationsIndex.ModelName:
+                    isQualificationValid = checkStringNotEmpty(i_NeededQualificationToCheck);
+                    break;
+                case (int)eQualificationsIndex.Energy:
+                    isQualificationValid = checkCurrentEnergyAmountInput(i_NeededQualificationToCheck);
+                    break;
                 case (int)eQualificationsIndex.WheelManufacturerName:
                     isQualificationValid = checkStringNotEmpty(i_NeededQualificationToCheck);
                     break;
                 case (int)eQualificationsIndex.CurrentWheelAirPressure:
-                    isQualificationValid = CheckCurrentWheelAirPressures(i_NeededQualificationToCheck,9999);
+                    isQualificationValid = checkCurrentWheelAirPressure(i_NeededQualificationToCheck);
                     break;
             }
 
@@ -134,38 +148,40 @@ namespace Ex03.GarageLogic
             return true;
         }
 
-        protected bool CheckCurrentWheelAirPressures(string i_StringToCheck,float i_MaxAirPressure)
+        private bool checkCurrentEnergyAmountInput(string i_CurrentEnergyAmountInput)
         {
-            float stringToFloat;
-            bool isValidToParse = float.TryParse(i_StringToCheck, out stringToFloat);
+            float currentEnergyAmount;
+            bool isValidEnergyAmount = float.TryParse(i_CurrentEnergyAmountInput, out currentEnergyAmount);
 
-            if (!isValidToParse)
+            if (!isValidEnergyAmount)
             {
-                throw new FormatException("Failed parse to float");
+                throw new FormatException("Failed parse from string to float");
             }
 
-            if (stringToFloat > i_MaxAirPressure || stringToFloat < 0)
+            if (currentEnergyAmount > m_Engine.MaxEnergyCapacity || currentEnergyAmount < 0)
             {
-                throw new ValueOutOfRangeException(i_MaxAirPressure, 0);
+                throw new ValueOutOfRangeException(m_Engine.MaxEnergyCapacity, 0);
             }
+
             return true;
         }
 
-        private bool checkCurrentEnergy(string i_StringToCheck)
+        private bool checkCurrentWheelAirPressure(string i_CurrentWheelAirPressure)
         {
-            float stringToFloat;
-            bool isValidToParse = float.TryParse(i_StringToCheck, out stringToFloat);
+            float currentAirPressure;
+            bool isValidAirPressure = float.TryParse(i_CurrentWheelAirPressure, out currentAirPressure);
 
-            if (!isValidToParse)
+            if (!isValidAirPressure)
             {
-                throw new FormatException("Failed parse to float");
+                throw new FormatException("Failed parse from string to float");
             }
 
-            float maxEnergy = this.m_Engine.MaxEnergyCapacity;
+            string vehicleType = this.GetType().Name;
+            Wheel.eMaxAirPressure maxAirPressure = (Wheel.eMaxAirPressure)Enum.Parse(typeof(Wheel.eMaxAirPressure), vehicleType);
 
-            if (stringToFloat > maxEnergy || stringToFloat < 0)
+            if (currentAirPressure > (float)maxAirPressure || currentAirPressure < 0)
             {
-                throw new ValueOutOfRangeException((float)maxEnergy, 0);
+                throw new ValueOutOfRangeException((float)maxAirPressure, 0);
             }
 
             return true;
@@ -173,19 +189,18 @@ namespace Ex03.GarageLogic
 
         public virtual void SetNeededQualifications(List<string> i_NeededQualifications)
         {
-            //m_Model = i_NeededQualifications[(int)eQualificationsIndex.ModelName];
-            //m_Engine.CurrentEnergy = float.Parse(i_NeededQualifications[(int)eQualificationsIndex.CurrentEnergyAmount]);
+            m_Model = i_NeededQualifications[(int)eQualificationsIndex.ModelName];
+            m_Engine.CurrentEnergy = float.Parse(i_NeededQualifications[(int)eQualificationsIndex.Energy]);
             m_CurrentEnergyPercentage = m_Engine.CurrentEnergy / m_Engine.MaxEnergyCapacity * 100;
         }
 
         public bool CheckIfEnumDefined<T>(string i_EnumToCheck)
         {
             //need to fix
-            bool isValidEnumm = true;
             int enumInInt = int.Parse(i_EnumToCheck);
-           // bool isValidEnumm = Enum.IsDefined(typeof(T), )(TenumInInt);
+            bool isValidEnumm = Enum.IsDefined(typeof(T), enumInInt);
 
-            if(isValidEnumm)
+            if(!isValidEnumm)
             {
                 throw new ValueOutOfRangeException(Enum.GetValues(typeof(T)).Length, 1);
             }

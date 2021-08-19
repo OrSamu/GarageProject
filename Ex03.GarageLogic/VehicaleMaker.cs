@@ -16,7 +16,7 @@ namespace Ex03.GarageLogic
             Truck = 5
         }
 
-        public static Vehicle CreateVehicle(string i_LicenseNumber, string i_Model,float i_CurrentEnergy,int i_VehicleType)
+        public static Vehicle CreateVehicle(string i_LicenseNumber,int i_VehicleType)
         {
             Vehicle newVehicle = null;
 
@@ -25,42 +25,32 @@ namespace Ex03.GarageLogic
                 case (int)eVehicleTypes.FuelMotorcycle:
                     newVehicle = new Motorcycle(
                         i_LicenseNumber,
-                        i_Model,
                         Engine.eEngineType.Fuel,
-                        Motorcycle.k_MaxFuel,
-                        i_CurrentEnergy);
+                        Motorcycle.k_MaxFuel);
                     break;
                 case (int)eVehicleTypes.ElectricMotorcycle:
                     newVehicle = new Motorcycle(
                         i_LicenseNumber,
-                        i_Model,
                         Engine.eEngineType.Electric,
-                        Motorcycle.k_MaxEnergyBattery,
-                        i_CurrentEnergy);
+                        Motorcycle.k_MaxEnergyBattery);
                     break;
                 case (int)eVehicleTypes.FuelCar:
                     newVehicle = new Car(
                         i_LicenseNumber,
-                        i_Model,
                         Engine.eEngineType.Fuel,
-                        Car.k_MaxFuel,
-                        i_CurrentEnergy);
+                        Car.k_MaxFuel);
                     break;
                 case (int)eVehicleTypes.ElectricCar:
                     newVehicle = new Car(
                         i_LicenseNumber,
-                        i_Model,
                         Engine.eEngineType.Electric,
-                        Car.k_MaxEnergyBattery,
-                        i_CurrentEnergy);
+                        Car.k_MaxEnergyBattery);
                     break;
                 case (int)eVehicleTypes.Truck:
                     newVehicle = new Truck(
                         i_LicenseNumber,
-                        i_Model,
                         Engine.eEngineType.Fuel,
-                        Truck.k_MaxFuel,
-                        i_CurrentEnergy);
+                        Truck.k_MaxFuel);
                     break;
             }
 

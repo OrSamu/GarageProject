@@ -25,8 +25,8 @@ namespace Ex03.GarageLogic
 
         private enum eQualificationsIndexForCar
         {
-            Color = 3,
-            Doors = 4
+            Color = 4,
+            Doors = 5
         }
 
         private const int k_NumOfWheels = 4;
@@ -40,13 +40,10 @@ namespace Ex03.GarageLogic
 
         
         public Car(string i_LicenseNumber,
-                   string i_Model, 
                    Engine.eEngineType i_EngineType, 
-                   float i_MaxEnergy, 
-                   float i_CurrentEnergy)
-            : base(i_LicenseNumber,i_Model,i_CurrentEnergy, i_MaxEnergy, i_EngineType)
+                   float i_MaxEnergy)
+            : base(i_LicenseNumber, i_MaxEnergy, i_EngineType)
         {
-
         }
         
         public override List<string> GetNeededQualifications()
@@ -65,7 +62,7 @@ namespace Ex03.GarageLogic
         {
             bool isValidInput = false;
 
-            if (i_IndexOfString < (int)Vehicle.eQualificationsIndex.NumOfBaseQualifications-1)
+            if (i_IndexOfString < (int)Vehicle.eQualificationsIndex.NumOfBaseQualifications)
             {
                 isValidInput = base.CheckNeededQualifications(i_NeededQualificationToCheck, i_IndexOfString);
             }
@@ -73,9 +70,6 @@ namespace Ex03.GarageLogic
             {
                 switch (i_IndexOfString)
                 {
-                    case (int)Vehicle.eQualificationsIndex.CurrentWheelAirPressure:
-                        isValidInput = CheckCurrentWheelAirPressures(i_NeededQualificationToCheck,k_MaxAirPressureForTire);
-                        break;
                     case (int)eQualificationsIndexForCar.Doors:
                         isValidInput = CheckIfEnumDefined<eNumberOfDoors>(i_NeededQualificationToCheck);
                         break;

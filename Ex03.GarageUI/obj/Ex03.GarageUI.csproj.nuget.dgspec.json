@@ -1,33 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dar28\\Desktop\\Programming\\GarageProject\\Ex03.GarageUI\\Ex03.GarageUI.csproj": {}
+    "C:\\Users\\or_st\\Programming\\C#\\C21 Ex03 OrSamucian 315872424 DarEini 313467482\\GarageProject\\Ex03.GarageUI\\Ex03.GarageUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dar28\\Desktop\\Programming\\GarageProject\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj": {
+    "C:\\Users\\or_st\\Programming\\C#\\C21 Ex03 OrSamucian 315872424 DarEini 313467482\\GarageProject\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\dar28\\Desktop\\Programming\\GarageProject\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj",
+        "projectUniqueName": "C:\\Users\\or_st\\Programming\\C#\\C21 Ex03 OrSamucian 315872424 DarEini 313467482\\GarageProject\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj",
         "projectName": "Ex03.GarageLogic",
-        "projectPath": "C:\\Users\\dar28\\Desktop\\Programming\\GarageProject\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj"
+        "projectPath": "C:\\Users\\or_st\\Programming\\C#\\C21 Ex03 OrSamucian 315872424 DarEini 313467482\\GarageProject\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj"
       },
       "frameworks": {
         "net40": {}
       }
     },
-    "C:\\Users\\dar28\\Desktop\\Programming\\GarageProject\\Ex03.GarageUI\\Ex03.GarageUI.csproj": {
+    "C:\\Users\\or_st\\Programming\\C#\\C21 Ex03 OrSamucian 315872424 DarEini 313467482\\GarageProject\\Ex03.GarageUI\\Ex03.GarageUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dar28\\Desktop\\Programming\\GarageProject\\Ex03.GarageUI\\Ex03.GarageUI.csproj",
+        "projectUniqueName": "C:\\Users\\or_st\\Programming\\C#\\C21 Ex03 OrSamucian 315872424 DarEini 313467482\\GarageProject\\Ex03.GarageUI\\Ex03.GarageUI.csproj",
         "projectName": "Ex03.GarageUI",
-        "projectPath": "C:\\Users\\dar28\\Desktop\\Programming\\GarageProject\\Ex03.GarageUI\\Ex03.GarageUI.csproj",
-        "packagesPath": "C:\\Users\\dar28\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dar28\\Desktop\\Programming\\GarageProject\\Ex03.GarageUI\\obj\\",
+        "projectPath": "C:\\Users\\or_st\\Programming\\C#\\C21 Ex03 OrSamucian 315872424 DarEini 313467482\\GarageProject\\Ex03.GarageUI\\Ex03.GarageUI.csproj",
+        "packagesPath": "C:\\Users\\or_st\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\or_st\\Programming\\C#\\C21 Ex03 OrSamucian 315872424 DarEini 313467482\\GarageProject\\Ex03.GarageUI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\dar28\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\or_st\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,8 +38,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\dar28\\Desktop\\Programming\\GarageProject\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj": {
-                "projectPath": "C:\\Users\\dar28\\Desktop\\Programming\\GarageProject\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj"
+              "C:\\Users\\or_st\\Programming\\C#\\C21 Ex03 OrSamucian 315872424 DarEini 313467482\\GarageProject\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj": {
+                "projectPath": "C:\\Users\\or_st\\Programming\\C#\\C21 Ex03 OrSamucian 315872424 DarEini 313467482\\GarageProject\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj"
               }
             }
           }
@@ -71,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

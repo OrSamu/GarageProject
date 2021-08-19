@@ -63,6 +63,14 @@ namespace Ex03.GarageLogic
         {
             return (int)Engine.eEngineType.Fuel;
         }
+
+        public void CheckFuelType(eFuelType i_GasType)
+        {
+            if (m_FuelType != i_GasType)
+            {
+                throw new ArgumentException("Incompatible gas type");
+            }
+        }
     }
 
 }

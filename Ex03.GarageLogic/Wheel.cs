@@ -55,7 +55,7 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             string wheelData = string.Format(
-                @"Manufacturer is {0}, current air pressure is {1} and max air pressure is {2}.",
+                @"The wheels manufacturer name is {0}, the current air pressure is {1} and the max air pressure is {2}.",
                 m_ManufacturerName,
                 m_CurrentAirPressure,
                 r_MaxAirPressure);

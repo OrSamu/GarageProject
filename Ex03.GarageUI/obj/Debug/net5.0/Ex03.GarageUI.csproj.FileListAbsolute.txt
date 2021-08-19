@@ -17,3 +17,22 @@ C:\Users\dar28\Desktop\Programming\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\
 C:\Users\dar28\Desktop\Programming\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\ref\Ex03.GarageUI.dll
 C:\Users\dar28\Desktop\Programming\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.pdb
 C:\Users\dar28\Desktop\Programming\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.genruntimeconfig.cache
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\bin\Debug\net5.0\Ex03.GarageUI.exe
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\bin\Debug\net5.0\Ex03.GarageUI.deps.json
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\bin\Debug\net5.0\Ex03.GarageUI.runtimeconfig.json
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\bin\Debug\net5.0\Ex03.GarageUI.runtimeconfig.dev.json
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\bin\Debug\net5.0\Ex03.GarageUI.dll
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\bin\Debug\net5.0\ref\Ex03.GarageUI.dll
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\bin\Debug\net5.0\Ex03.GarageUI.pdb
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\bin\Debug\net5.0\Ex03.GarageLogic.dll
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\bin\Debug\net5.0\Ex03.GarageLogic.pdb
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.csproj.AssemblyReference.cache
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.AssemblyInfoInputs.cache
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.AssemblyInfo.cs
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.csproj.CoreCompileInputs.cache
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.csproj.CopyComplete
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.dll
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\ref\Ex03.GarageUI.dll
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.pdb
+C:\Users\or_st\Programming\C#\C21 Ex03 OrSamucian 315872424 DarEini 313467482\GarageProject\Ex03.GarageUI\obj\Debug\net5.0\Ex03.GarageUI.genruntimeconfig.cache
