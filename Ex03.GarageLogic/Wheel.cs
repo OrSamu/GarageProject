@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Ex03.GarageLogic
+﻿namespace Ex03.GarageLogic
 {
     public class Wheel
     {
@@ -27,26 +22,38 @@ namespace Ex03.GarageLogic
 
         public float CurrentAirPressure
         {
-            get { return m_CurrentAirPressure; }
+            get
+            {
+                return m_CurrentAirPressure;
+            }
 
-            //set { m_CurrentAirPressure = value; }
+            set
+            {
+                m_CurrentAirPressure = value;
+            }
         }
 
         public float MaxAirPressure
         {
-            get { return r_MaxAirPressure; }
+            get
+            {
+                return r_MaxAirPressure;
+            }
         }
 
         public string Manufacturer
         {
-            get { return m_ManufacturerName; }
+            get
+            {
+                return m_ManufacturerName;
+            }
         }
 
         public void InflateWheel(float i_AirPressureToAdd)
         {
-            if (i_AirPressureToAdd + m_CurrentAirPressure > r_MaxAirPressure)
+            if(i_AirPressureToAdd + m_CurrentAirPressure > r_MaxAirPressure)
             {
-                //throw new ValueOutOfRangeException(r_MaxAirPressure, 0);
+                throw new ValueOutOfRangeException(r_MaxAirPressure, 0);
             }
 
             m_CurrentAirPressure += i_AirPressureToAdd;
@@ -62,7 +69,5 @@ namespace Ex03.GarageLogic
 
             return wheelData;
         }
-
-
     }
 }

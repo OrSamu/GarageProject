@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -29,11 +27,7 @@ namespace Ex03.GarageLogic
         protected List<Wheel> m_Wheels;
         protected Engine m_Engine;
 
-
-        protected Vehicle(
-            string i_LicenseNumber,
-            float i_MaxEnergy,
-            Engine.eEngineType i_EngineType)
+        protected Vehicle(string i_LicenseNumber, float i_MaxEnergy, Engine.eEngineType i_EngineType)
         {
             r_LicenseNumber = i_LicenseNumber;
 
@@ -49,9 +43,17 @@ namespace Ex03.GarageLogic
 
         public Engine Engine
         {
-            get { return m_Engine; }
+            get
+            {
+                return m_Engine;
+            }
         }
-        protected void InitializeWheels(int i_NumOfWheels, string i_ManufacturerName, float i_CurrentAirPressure, float i_MaxAirPressure)
+
+        protected void InitializeWheels(
+            int i_NumOfWheels,
+            string i_ManufacturerName,
+            float i_CurrentAirPressure,
+            float i_MaxAirPressure)
         {
             m_Wheels = new List<Wheel>(i_NumOfWheels);
             Wheel wheelToAdd;
@@ -68,10 +70,10 @@ namespace Ex03.GarageLogic
             float missingAirPressure = 0;
             string inflationReturnMsg;
 
-            foreach (Wheel wheel in m_Wheels)
+            foreach(Wheel wheel in m_Wheels)
             {
                 missingAirPressure = wheel.MaxAirPressure - wheel.CurrentAirPressure;
-                if (missingAirPressure != 0)
+                if(missingAirPressure != 0)
                 {
                     wheel.InflateWheel(missingAirPressure);
                 }
@@ -89,9 +91,13 @@ namespace Ex03.GarageLogic
             return inflationReturnMsg;
         }
 
-        protected void InitializeEngine(Engine.eEngineType i_EngineType, float i_MaxEnergy,float i_MaxFuel,FuelEngine.eFuelType i_FuelType)
+        protected void InitializeEngine(
+            Engine.eEngineType i_EngineType,
+            float i_MaxEnergy,
+            float i_MaxFuel,
+            FuelEngine.eFuelType i_FuelType)
         {
-            if (i_EngineType == Engine.eEngineType.Electric)
+            if(i_EngineType == Engine.eEngineType.Electric)
             {
                 m_Engine = new ElectricEngine(i_MaxEnergy);
             }
@@ -104,12 +110,12 @@ namespace Ex03.GarageLogic
         public virtual List<string> GetNeededQualifications()
         {
             List<string> neededQualifications = new List<string>
-                                                     {
-                                                         "Model name: ",
-                                                         "Vehicle's energy source amount ",
-                                                         "Wheel manufacturer: ",
-                                                         "Current wheel air pressure: "
-                                                     };
+                                                    {
+                                                        "Model name: ",
+                                                        "Vehicle's energy source amount ",
+                                                        "Wheel manufacturer: ",
+                                                        "Current wheel air pressure: "
+                                                    };
 
             return neededQualifications;
         }
@@ -117,7 +123,6 @@ namespace Ex03.GarageLogic
         public virtual bool CheckNeededQualifications(string i_NeededQualificationToCheck, int i_IndexOfString)
         {
             bool isQualificationValid = false;
-
 
             switch(i_IndexOfString)
             {
@@ -140,7 +145,7 @@ namespace Ex03.GarageLogic
 
         private bool checkStringNotEmpty(string i_StringToCheck)
         {
-            if (string.IsNullOrEmpty(i_StringToCheck))
+            if(string.IsNullOrEmpty(i_StringToCheck))
             {
                 throw new ArgumentException("You have entered an empty string - try again");
             }
@@ -153,12 +158,12 @@ namespace Ex03.GarageLogic
             float currentEnergyAmount;
             bool isValidEnergyAmount = float.TryParse(i_CurrentEnergyAmountInput, out currentEnergyAmount);
 
-            if (!isValidEnergyAmount)
+            if(!isValidEnergyAmount)
             {
                 throw new FormatException("Failed parse from string to float");
             }
 
-            if (currentEnergyAmount > m_Engine.MaxEnergyCapacity || currentEnergyAmount < 0)
+            if(currentEnergyAmount > m_Engine.MaxEnergyCapacity || currentEnergyAmount < 0)
             {
                 throw new ValueOutOfRangeException(m_Engine.MaxEnergyCapacity, 0);
             }
@@ -171,15 +176,16 @@ namespace Ex03.GarageLogic
             float currentAirPressure;
             bool isValidAirPressure = float.TryParse(i_CurrentWheelAirPressure, out currentAirPressure);
 
-            if (!isValidAirPressure)
+            if(!isValidAirPressure)
             {
                 throw new FormatException("Failed parse from string to float");
             }
 
             string vehicleType = this.GetType().Name;
-            Wheel.eMaxAirPressure maxAirPressure = (Wheel.eMaxAirPressure)Enum.Parse(typeof(Wheel.eMaxAirPressure), vehicleType);
+            Wheel.eMaxAirPressure maxAirPressure =
+                (Wheel.eMaxAirPressure)Enum.Parse(typeof(Wheel.eMaxAirPressure), vehicleType);
 
-            if (currentAirPressure > (float)maxAirPressure || currentAirPressure < 0)
+            if(currentAirPressure > (float)maxAirPressure || currentAirPressure < 0)
             {
                 throw new ValueOutOfRangeException((float)maxAirPressure, 0);
             }
@@ -196,7 +202,6 @@ namespace Ex03.GarageLogic
 
         public bool CheckIfEnumDefined<T>(string i_EnumToCheck)
         {
-            //need to fix
             int enumInInt = int.Parse(i_EnumToCheck);
             bool isValidEnumm = Enum.IsDefined(typeof(T), enumInInt);
 
@@ -207,7 +212,6 @@ namespace Ex03.GarageLogic
 
             return isValidEnumm;
         }
-
 
         protected string GetVehicleData()
         {
@@ -221,7 +225,6 @@ namespace Ex03.GarageLogic
                 m_Engine.ToString(),
                 m_Wheels[0].ToString());
 
-            
             return vehicleData;
         }
     }

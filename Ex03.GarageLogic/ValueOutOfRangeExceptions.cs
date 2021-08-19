@@ -16,12 +16,18 @@ namespace Ex03.GarageLogic
 
         public float MaxValue
         {
-            get { return r_MaxValue; }
+            get
+            {
+                return r_MaxValue;
+            }
         }
 
         public float MinValue
         {
-            get { return r_MinValue; }
+            get
+            {
+                return r_MinValue;
+            }
         }
     }
 }

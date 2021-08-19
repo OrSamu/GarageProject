@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
@@ -34,25 +31,23 @@ namespace Ex03.GarageLogic
         internal const float k_MaxFuel = 45;
         internal const float k_MaxEnergyBattery = 3.2f;
 
-
         private eNumberOfDoors m_Doors;
         private eColor m_Color;
 
-        
-        public Car(string i_LicenseNumber,
-                   Engine.eEngineType i_EngineType, 
-                   float i_MaxEnergy)
+        public Car(string i_LicenseNumber, Engine.eEngineType i_EngineType, float i_MaxEnergy)
             : base(i_LicenseNumber, i_MaxEnergy, i_EngineType)
         {
         }
-        
+
         public override List<string> GetNeededQualifications()
         {
             List<string> neededQualifications = base.GetNeededQualifications();
 
-            neededQualifications.Add(@"What is your car's color?
+            neededQualifications.Add(
+                @"What is your car's color?
 1-Red 2-White 3-Black 4-Silver: ");
-            neededQualifications.Add(@"How many doors your car has?
+            neededQualifications.Add(
+                @"How many doors your car has?
 1-Two 2-Three 3-Four 4-Five: ");
 
             return neededQualifications;
@@ -62,13 +57,13 @@ namespace Ex03.GarageLogic
         {
             bool isValidInput = false;
 
-            if (i_IndexOfString < (int)Vehicle.eQualificationsIndex.NumOfBaseQualifications)
+            if(i_IndexOfString < (int)Vehicle.eQualificationsIndex.NumOfBaseQualifications)
             {
                 isValidInput = base.CheckNeededQualifications(i_NeededQualificationToCheck, i_IndexOfString);
             }
             else
             {
-                switch (i_IndexOfString)
+                switch(i_IndexOfString)
                 {
                     case (int)eQualificationsIndexForCar.Doors:
                         isValidInput = CheckIfEnumDefined<eNumberOfDoors>(i_NeededQualificationToCheck);
@@ -81,7 +76,7 @@ namespace Ex03.GarageLogic
 
             return isValidInput;
         }
-        
+
         public override void SetNeededQualifications(List<string> i_NeededQualifications)
         {
             FuelEngine fuelEngine = m_Engine as FuelEngine;
@@ -90,10 +85,9 @@ namespace Ex03.GarageLogic
                 float.Parse(i_NeededQualifications[(int)eQualificationsIndex.CurrentWheelAirPressure]);
             eNumberOfDoors doorsInput =
                 (eNumberOfDoors)int.Parse(i_NeededQualifications[(int)eQualificationsIndexForCar.Doors]);
-            eColor colorInput =
-                (eColor)int.Parse(i_NeededQualifications[(int)eQualificationsIndexForCar.Color]);
+            eColor colorInput = (eColor)int.Parse(i_NeededQualifications[(int)eQualificationsIndexForCar.Color]);
 
-            if (fuelEngine != null)
+            if(fuelEngine != null)
             {
                 fuelEngine.FuelType = FuelEngine.eFuelType.Octan95;
             }

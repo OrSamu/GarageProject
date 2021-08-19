@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Ex03.GarageLogic
 {
     public class Motorcycle : Vehicle
     {
-
         public enum eLicenseType
         {
             A = 1,
@@ -30,20 +27,17 @@ namespace Ex03.GarageLogic
         private eLicenseType m_LicenseType;
         private int m_EngineCapacity;
 
-       
-        public Motorcycle(string i_LicenseNumber,
-                          Engine.eEngineType i_EngineType,
-                                    float i_MaxEnergy)
+        public Motorcycle(string i_LicenseNumber, Engine.eEngineType i_EngineType, float i_MaxEnergy)
             : base(i_LicenseNumber, i_MaxEnergy, i_EngineType)
         {
         }
-        
 
         public override List<string> GetNeededQualifications()
         {
             List<string> neededQualifications = base.GetNeededQualifications();
 
-            neededQualifications.Add(@"What is your motorcycle license type?
+            neededQualifications.Add(
+                @"What is your motorcycle license type?
 1-A 2-AA 3-B1 4-BB: ");
             neededQualifications.Add(@"What is your engine capacity? ");
 
@@ -54,13 +48,13 @@ namespace Ex03.GarageLogic
         {
             bool isValidInput = false;
 
-            if (i_IndexOfString < 4)
+            if(i_IndexOfString < 4)
             {
                 isValidInput = base.CheckNeededQualifications(i_NeededQualificationToCheck, i_IndexOfString);
             }
             else
             {
-                switch (i_IndexOfString)
+                switch(i_IndexOfString)
                 {
                     case (int)eQualificationsIndexForMotorcycle.License:
                         isValidInput = CheckIfEnumDefined<eLicenseType>(i_NeededQualificationToCheck);
@@ -79,12 +73,12 @@ namespace Ex03.GarageLogic
             int stringToInt;
             bool isValidToParse = int.TryParse(i_StringToCheck, out stringToInt);
 
-            if (!isValidToParse)
+            if(!isValidToParse)
             {
                 throw new FormatException("Failed parse to int");
             }
 
-            if (stringToInt < 0)
+            if(stringToInt < 0)
             {
                 throw new ValueOutOfRangeException(999999999, 0);
             }
@@ -102,13 +96,11 @@ namespace Ex03.GarageLogic
                 (eLicenseType)int.Parse(i_NeededQualifications[(int)eQualificationsIndexForMotorcycle.License]);
             int engineCapacityInput =
                 int.Parse(i_NeededQualifications[(int)eQualificationsIndexForMotorcycle.EngineCapacity]);
-            
-            if (fuelEngine != null)
+
+            if(fuelEngine != null)
             {
                 fuelEngine.FuelType = FuelEngine.eFuelType.Octan98;
             }
-
-            
 
             base.SetNeededQualifications(i_NeededQualifications);
             InitializeWheels(k_NumOfWheels, manufacturerName, currentAirPressure, k_MaxAirPressureForTire);
@@ -118,7 +110,8 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            string motorcycleData = string.Format(@"{0}
+            string motorcycleData = string.Format(
+                @"{0}
 There are {1} wheels, the license Type is {2} and the engine capacity is {3}.",
                 GetVehicleData(),
                 (int)eNumberOfWheels.Motorcycle,

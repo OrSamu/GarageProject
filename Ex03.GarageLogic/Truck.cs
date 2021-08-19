@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -21,10 +19,7 @@ namespace Ex03.GarageLogic
         private bool m_IsDangerous;
         private float m_MaxWeight;
 
-     
-        public Truck  (string i_LicenseNumber,
-                       Engine.eEngineType i_EngineType,
-                       float i_MaxEnergy)
+        public Truck(string i_LicenseNumber, Engine.eEngineType i_EngineType, float i_MaxEnergy)
             : base(i_LicenseNumber, i_MaxEnergy, i_EngineType)
         {
         }
@@ -43,7 +38,7 @@ namespace Ex03.GarageLogic
         {
             bool isValidInput = false;
 
-            if (i_IndexOfString < 4)
+            if(i_IndexOfString < 4)
             {
                 isValidInput = base.CheckNeededQualifications(i_NeededQualificationToCheck, i_IndexOfString);
             }
@@ -61,7 +56,6 @@ namespace Ex03.GarageLogic
             }
 
             return isValidInput;
-
         }
 
         private bool checkIfTruckIsDangerous(string i_StringToCheck)
@@ -69,7 +63,7 @@ namespace Ex03.GarageLogic
             int stringToInt;
             bool isValidToParse = int.TryParse(i_StringToCheck, out stringToInt);
 
-            if (!isValidToParse)
+            if(!isValidToParse)
             {
                 throw new FormatException("Failed parse to int");
             }
@@ -87,12 +81,12 @@ namespace Ex03.GarageLogic
             float stringToFloat;
             bool isValidToParse = float.TryParse(i_StringToCheck, out stringToFloat);
 
-            if (!isValidToParse)
+            if(!isValidToParse)
             {
                 throw new FormatException("Failed parse to float");
             }
 
-            if (stringToFloat<0)
+            if(stringToFloat < 0)
             {
                 throw new ValueOutOfRangeException(999999999, 0);
             }
@@ -117,7 +111,8 @@ namespace Ex03.GarageLogic
         public override string ToString()
         {
             string isDangerousTruck = m_IsDangerous ? "are" : "aren't";
-            string truckData = string.Format(@"{0}
+            string truckData = string.Format(
+                @"{0}
 There are {1} wheels, the truck's goods {2} dangerous and the load Capacity is {3}.",
                 GetVehicleData(),
                 (int)eNumberOfWheels.Truck,

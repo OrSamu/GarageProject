@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Ex03.GarageUI
+﻿namespace Ex03.GarageUI
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             UIManager programManager = new UIManager();
             programManager.Run();
