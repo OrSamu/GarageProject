@@ -27,6 +27,7 @@ namespace Ex03.GarageLogic
         protected List<Wheel> m_Wheels;
         protected Engine m_Engine;
 
+
         protected Vehicle(
             string i_LicenseNumber,
             string i_Model,
@@ -49,6 +50,12 @@ namespace Ex03.GarageLogic
             m_CurrentEnergyPercentage = i_CurrentEnergyPercentage;
         }
 
+        public Engine engine
+        {
+            get {
+                return m_Engine;
+            }
+        }
         protected void InitializeWheels(int i_NumOfWheels, string i_ManufacturerName, float i_CurrentAirPressure, float i_MaxAirPressure)
         {
             m_Wheels = new List<Wheel>(i_NumOfWheels);

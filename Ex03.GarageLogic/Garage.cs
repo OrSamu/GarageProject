@@ -18,6 +18,11 @@ namespace Ex03.GarageLogic
                 r_ExistingVehicles.Add(i_LicenseNumber, vehicleDetails);
 
         }
+
+        public Vehicle getVehicleByLicenseNumber(string i_licenseNumber)
+        {
+            return r_ExistingVehicles[i_licenseNumber].Vehicle;
+        }
         public bool IsVihicleExistInGarage(string i_LicenseNumber)
         {
             bool isVehicleExist = false;
@@ -30,6 +35,7 @@ namespace Ex03.GarageLogic
             }
             return isVehicleExist;
         }
+
 
         public void SetVehicleStatus(string i_LicenseNumber, int status)
         {
@@ -46,7 +52,7 @@ namespace Ex03.GarageLogic
             foreach (string vehicleNumber in r_ExistingVehicles.Keys)
                 {
 
-                if (filer == -1)
+                if (filer == 0)
                 {
                 vehicalsToSend.Add(vehicleNumber);
                 }
@@ -72,8 +78,7 @@ namespace Ex03.GarageLogic
                     }
                 }
 
-
-            }
+                }
             return vehicalsToSend;
         }
     }

@@ -23,6 +23,11 @@ namespace Ex03.GarageLogic
             r_Owner_Number = i_Owner_Number;
             m_vehicle = i_Vehicle;
         }
+
+        public Vehicle Vehicle
+        {
+            get { return m_vehicle; }
+        }
         public int State
         {
             get { return (int)m_State; }

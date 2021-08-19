@@ -43,6 +43,8 @@ namespace Ex03.GarageLogic
 
         public abstract void FillEnergy(float i_EnergyToAdd);
 
+        public abstract int getEngineType();
+
         public abstract override string ToString();
     }
 }

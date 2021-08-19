@@ -78,7 +78,86 @@ namespace Ex03.GarageUI
             i_VehicleEnergy = float.Parse(energyInput);
         }
 
+        private string getLicenseNumber()
+        {
+            string licsenseNumber;
+            Console.WriteLine("please enter a license number");
+            do
+            {
+                licsenseNumber = Console.ReadLine();
 
+            } while (!InputValidation.IsNotEmptyInput(licsenseNumber));
+
+            return licsenseNumber;
+        }
+        private void changeVehicleStateInGarage()
+        {
+            string licenseNumber = getLicenseNumber();
+            if (m_Garage.IsVihicleExistInGarage(licenseNumber))
+           {
+               int state = getStateFromUser();
+                m_Garage.SetVehicleStatus(licenseNumber, state);
+           }
+           else
+           {
+               Console.WriteLine("Vehicle doesn't exist in the garage");
+           }
+
+        }
+
+        private void inflateVehiclesWheels()
+        {
+            Vehicle vehicleToInflate;
+            string licenseNumber = getLicenseNumber();
+            if (m_Garage.IsVihicleExistInGarage(licenseNumber))
+            {
+                vehicleToInflate = m_Garage.getVehicleByLicenseNumber(licenseNumber);
+                vehicleToInflate.InflateWheelsToMax();
+            }
+            else
+            {
+                Console.WriteLine("Vehicle doesn't exist in the garage");
+            }
+
+        } 
+
+        private int getStateFromUser()
+        {
+            int stateInput;
+            int maxCommand = Enum.GetValues(typeof(VehicleDetails.eVehicleStates)).Cast<int>().Max();
+            int minCommand = Enum.GetValues(typeof(VehicleDetails.eVehicleStates)).Cast<int>().Min() ;
+            Array vehicleStates = Enum.GetValues(typeof(VehicleDetails.eVehicleStates));
+
+            Console.WriteLine("please enter status:");
+            foreach (VehicleDetails.eVehicleStates state in vehicleStates)
+            {
+                Console.WriteLine(@"Press ({1}) to change {0} to state", state, (int)state);
+            }
+
+            stateInput = getUserInput(maxCommand,minCommand);
+            return stateInput;
+        }
+        private void showVehiclesInGarage()
+        {
+            int userFilterINput;
+            List<string> vehicleLiscenseList;
+            int maxCommand = Enum.GetValues(typeof(VehicleDetails.eVehicleStates)).Cast<int>().Max();
+            int minCommand = Enum.GetValues(typeof(VehicleDetails.eVehicleStates)).Cast<int>().Min()-1;
+            Array vehicleStates = Enum.GetValues(typeof(VehicleDetails.eVehicleStates));
+
+            Console.WriteLine("Press (0) to show all vehicles ");
+            foreach (VehicleDetails.eVehicleStates state in vehicleStates)
+            {
+                Console.WriteLine(@"Press ({1}) to show vehivles in {0} state", state, (int)state);
+            }
+            userFilterINput = getUserInput(maxCommand, minCommand);
+            vehicleLiscenseList= m_Garage.GetVehiclesByFilter(userFilterINput);
+            foreach(string vehicleNumber in vehicleLiscenseList)
+            {
+                Console.WriteLine(vehicleNumber);
+            }
+
+        }
         private void addNewVehicle()
         {
             string licsenseNumber;
@@ -160,6 +239,52 @@ namespace Ex03.GarageUI
 
             return userVehicleQualificationList;
         }
+
+        public int getFuelType()
+        {
+            int userFilterInput;
+            int maxCommand = Enum.GetValues(typeof(FuelEngine.eFuelType)).Cast<int>().Max();
+            int minCommand = Enum.GetValues(typeof(FuelEngine.eFuelType)).Cast<int>().Min();
+            Array fuelTypes = Enum.GetValues(typeof(FuelEngine.eFuelType));
+
+            Console.WriteLine("please enter fuel type");
+            foreach (FuelEngine.eFuelType fuelType in fuelTypes)
+            {
+                Console.WriteLine(@"Press ({1}) to fill {0} ", fuelType, (int)fuelType);
+            }
+            userFilterInput = getUserInput(maxCommand, minCommand);
+            return userFilterInput;
+        }
+        public void FillVehiclesTank()
+        {
+            int fuelType;
+            string licenseNumber;
+            string fuelAmountString;
+            float fuelAmount;
+            licenseNumber = getLicenseNumber();
+            if (m_Garage.IsVihicleExistInGarage(licenseNumber))
+            {
+                if(m_Garage.getVehicleByLicenseNumber(licenseNumber).engine.getEngineType()
+                   == (int)Engine.eEngineType.Fuel)
+                {
+                    fuelType = getFuelType();
+                    Console.WriteLine("please enter fuel amount");
+                    do
+                    {
+                        fuelAmountString = Console.ReadLine();
+
+                    }
+                    while (!InputValidation.isAFloat(fuelAmountString));
+
+                    fuelAmount = float.Parse(fuelAmountString);
+                    m_Garage.getVehicleByLicenseNumber(licenseNumber).engine.FillEnergy(fuelAmount);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Vehicle doesn't exist in the garage");
+            }
+        }
         private void runCommand(int i_UserCommand)
         {
             switch(i_UserCommand)
@@ -169,12 +294,16 @@ namespace Ex03.GarageUI
                     break;
 
                 case (int)eMenuCommands.ShowVehicleList:
+                    showVehiclesInGarage();
                     break;
                 case (int)eMenuCommands.ChangeVehicleState:
+                    changeVehicleStateInGarage();
                     break;
                 case (int)eMenuCommands.InflateVehicleWheels:
+                    inflateVehiclesWheels();
                     break;
                 case (int)eMenuCommands.FillVehicleFuel:
+                    FillVehiclesTank();
                     break;
                 case (int)eMenuCommands.ChargeVehicleEnergy:
                     break;
