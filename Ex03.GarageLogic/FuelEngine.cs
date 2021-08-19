@@ -58,5 +58,11 @@ namespace Ex03.GarageLogic
 
             return engineData;
         }
+
+        public override int getEngineType()
+        {
+            return (int)Engine.eEngineType.Fuel;
+        }
     }
+
 }
